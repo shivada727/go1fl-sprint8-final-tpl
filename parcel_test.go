@@ -135,12 +135,10 @@ func TestGetByClient(t *testing.T) {
 		parcelMap[id] = parcels[i]
 	}
 
-	// get by client
 	storedParcels, err := store.GetByClient(client)
 	require.NoError(t, err)
-	require.Equal(t, len(parcels), len(storedParcels))
+	require.Len(t, storedParcels, len(parcels))
 
-	// check
 	for _, parcel := range storedParcels {
 		orig, ok := parcelMap[parcel.Number]
 		require.True(t, ok)
